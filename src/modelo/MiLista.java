@@ -39,6 +39,9 @@ public class MiLista {
         if (op == 3) {
             EliminarElemento();
         }
+        if (op==4 ){
+            modificar();
+        }
 
     }
 
@@ -103,6 +106,27 @@ public class MiLista {
             System.out.println("La lista esta vacia");
         }
 
+    }
+
+    public void modificar() {
+        if (isEmpy() != true) {
+            mostrar();
+            System.out.println("\n seleccione numero para eliminar en posicion: ");
+            int indice = scaner.nextInt();
+
+            if (indice > elementos.size()) {
+                System.out.println("se escapa de los limites de la lista ");
+                modificar();
+            } else {
+                System.out.println("inserte texto a ingresar: \n");
+
+                String texto = scaner2.nextLine();
+                elementos.set(indice, texto);
+                mostrar();
+            }
+        } else {
+            System.out.println("la lista esta vacia");
+        }
     }
 
     public void insertar(Object elem) {
