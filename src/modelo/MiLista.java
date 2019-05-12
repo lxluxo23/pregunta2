@@ -3,7 +3,6 @@ package modelo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import javax.swing.JOptionPane;
 
 public class MiLista {
 
@@ -37,7 +36,9 @@ public class MiLista {
         if (op == 2) {
             InsertarEnPosicion();
         }
-        
+        if (op == 3) {
+            EliminarElemento();
+        }
 
     }
 
@@ -51,17 +52,23 @@ public class MiLista {
 
     public void InsertarEnPosicion() {
 
-        while (isEmpy() != true) {
-
+        if (isEmpy() != true) {
             this.mostrar();
+
             System.out.println("\n seleccione numero para insertar en posicion: ");
             int indice = scaner.nextInt();
+            if (indice > elementos.size()) {
+                System.out.println("se escapa de los limites de la lista ");
+                InsertarEnPosicion();
+            } else {
 
-            System.out.println("inserte texto a ingresar");
+                System.out.println("inserte texto a ingresar: \n");
 
-            String texto = scaner2.nextLine();
-            elementos.add(indice, texto);
-            this.mostrar();
+                String texto = scaner2.nextLine();
+                elementos.add(indice, texto);
+                this.mostrar();
+
+            }
 
         }
 
@@ -73,6 +80,28 @@ public class MiLista {
         int opc = scaner.nextInt() - 1;
 
         System.out.println("el elemto en esa posicion, tiene los datos: " + elementos.get(opc));
+
+    }
+
+    public void EliminarElemento() {
+
+        if (isEmpy() != true) {
+            mostrar();
+
+            System.out.println("\n seleccione numero para eliminar en posicion: ");
+            int indice = scaner.nextInt();
+            if (indice > elementos.size()) {
+                System.out.println("se escapa de los limites de la lista ");
+                EliminarElemento();
+            } else {
+
+                elementos.remove(indice);
+                this.mostrar();
+            }
+
+        } else {
+            System.out.println("La lista esta vacia");
+        }
 
     }
 
